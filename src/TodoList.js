@@ -1,42 +1,65 @@
-import React from 'react'
+import React from "react";
 
-const TodoList = ({editingIndex,setTodoInput,todoInput,editedInput,edit,delet,handleEditChange,setEditingIndex,setEditedInput}) => {
+const TodoList = ({
+  editingIndex,
+  setTodoInput,
+  todoInput,
+  editedInput,
+  setEditingIndex,
+  setEditedInput,
+}) => {
+  const delet = (index) => {
+    setTodoInput((prevInput) => prevInput.filter((_, i) => i !== index));
+
+    setEditingIndex(-1);
+  };
+
+  const edit = (index, td) => {
+    setEditingIndex(index);
+    //  setEditedInput(todoInput[index]);
+    setEditedInput(td);
+    //  console.log("inside edit", editedInput);
+  };
+
+  const handleEditChange = (e, index) => {
+    setEditedInput(e.target.value);
+  };
+
   return (
     <div>
-              <div className='list'>
-      <ul className='todo-list'>
-      {todoInput.map((td,index)=>(
+      <div className="list">
+        <ul className="todo-list">
+          {todoInput.map((td, index) => (
+            <li key={index}>
+              {editingIndex === index ? (
+                <input
+                  type="text"
+                  placeholder="Enter things to get added"
+                  value={editedInput}
+                  onChange={(e) => handleEditChange(e, index)}
+                />
+              ) : (
+                td
+              )}
 
-        <li key={index}>
-          {editingIndex===index?(
-        <input type="text" placeholder="Enter things to get added" value={editedInput} onChange={(e)=>handleEditChange(e,index)} /> 
+              <button className="del" onClick={() => delet(index)}>
+                Delete
+              </button>
 
-      ):(td)}
-
-      
-      
-          {/* {td} */}
-        <button className='del' onClick={()=>delet(index)}>Delete</button>
-
-        {editingIndex!==index?<button className='update'  onClick={()=>edit(index,td)}>Edit
-{/*           
-          {editingIndex==index?"":"Edit"} */}
-          </button>:<p></p>} 
-
-        {/* // <button className='update'  onClick={()=>edit(index,null,td)}>
-          
-        //   {editingIndex==index?"":"Edit"}
-        //   </button> */}
-
-        </li>
-      ))}
-
-      </ul>
+              {editingIndex !== index ? (
+                <button className="update" onClick={() => edit(index, td)}>
+                  Edit
+                </button>
+              ) : (
+                <p></p>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
       <p>Last Line</p>
-      
     </div>
-  )
-}
+  );
+};
 
-export default TodoList
+export default TodoList;
