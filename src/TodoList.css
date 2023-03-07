@@ -1,0 +1,40 @@
+/* TodoList.css */
+
+
+.del{
+
+    /* margin-left: 10px;
+  color: aliceblue;
+    height: 2em;
+  font-size: 1em;;
+    padding: 0.5em;
+  background-color: red; */
+  margin-left:10px;
+  height: 35px;;
+  width:auto;
+  border-radius: 10px;
+  color:aliceblue;
+  font-weight:bolder;
+  background: linear-gradient(to right, rgb(255, 7, 7), rgb(3, 3, 0) 50%, rgb(241, 55, 55));
+  
+    transition: all 0.2s ease;
+  }
+  
+  .del:hover{
+  
+    background-color: darkcyan;
+  }
+  .list ul{
+  
+    list-style: none;
+    padding: 0;
+  }
+  .list li{
+    margin-bottom: 5px;
+  
+    
+  }
+  
+  .list .todo-list li:last-child {
+    margin-bottom: 9px;
+  }
